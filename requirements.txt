@@ -1,3 +1,4 @@
 jupyterlab==3.4.7
 pandas==1.4.4
 numpy==1.23.3
+requests==2.28.1
