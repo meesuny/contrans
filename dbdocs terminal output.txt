@@ -1,0 +1,52 @@
+
+
+# dbdocs
+VERSION
+  dbdocs/0.7.2 linux-x64 node-v19.0.0
+
+USAGE
+  $ dbdocs [COMMAND]
+
+COMMANDS
+  build     build docs
+  help      Display help for dbdocs.
+  login     login to dbdocs
+  logout    logout
+  ls        list projects
+  password  set password for your project or remove password
+  remove    remove docs
+  rename    change your username
+  token     generate or revoke your authentication token
+  validate  validate docs content
+
+# dbdocs login
+? Choose a login method: GitHub
+? Please input your authentication token:  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
+? Validate token
+ ›   Error: Invalid token. Please login again.
+# dbdocs login
+? Choose a login method: Email
+? Your email: tby8aj@virginia.edu
+? Request email authentication
+? Please input OTP code sent to the email: 110551
+? Login to your account
+? Validate token
+? Save credential
+
+Done.
+# pwd
+/contrans
+# ls
+Dockerfile  LICENSE  README.md  Untitled.ipynb  app  examples  requirements.txt
+# dbdocs build examples/nbadb.dbml
+? Failed: You have syntax error in nbadb.dbml line 20 column 24. Expected "default:", "increment", "not null", "note:", "null", "pk", "primary key", "ref:", "unique", comment, or whitespace but "f" found.
+# dbdocs build examples/nbadb.dbml
+? Failed: You have syntax error in nbadb.dbml line 20 column 23. Expected " ", comment, or newline but "[" found.
+# dbdocs build examples/nbadb.dbml
+? Failed: You have syntax error in nbadb.dbml line 35 column 20. Expected "default:", "increment", "not null", "note:", "null", "pk", "primary key", "ref:", "unique", comment, or whitespace but "f" found.
+# dbdocs build examples/nbadb.dbml
+? Failed: You have syntax error in nbadb.dbml line 51 column 10. Expected " ", "[", PK, comment, newline, or unique but "i" found.
+# dbdocs build examples/nbadb.dbml
+? Parsing file content
+? Password is not set for 'NBA_database'
+? Done. Visit: https://dbdocs.io/tby8aj/NBA_database
