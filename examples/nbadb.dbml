@@ -1,0 +1,65 @@
+Project NBA_database {
+  database_type: 'SQLite'
+  Note: '''
+    # NBA Database
+    The data comes from a web-scraping project on box scores from the 2021-2022 NBA season.
+  '''
+}
+Table games as G {
+  game_id varchar [pk]
+  game_date date
+  OT int
+  note: "Data specific to each NBA game, not to team or player"
+}
+Table players as P {
+  player_id varchar [pk]
+  player varchar
+  note: "Data specific to a player, not to a team or game"
+}
+Table team_game as TG {
+  game_id varchar [pk]
+  Team_Abbrev varchar [pk]
+  H_A varchar
+  Team_Score int
+  Team_pace float
+  Team_efg_pct float
+  Team_tov_pct float
+  Team_orb_pct float
+  Team_ft_rate float
+  Team_off_rtg float
+  Opponent_Abbrev varchar
+  note: "Team level stats for each individual game"
+}
+Table player_game as PG {
+  game_player_id varchar [pk]
+  game_id varchar
+  player_id varchar
+  starter int
+  mp varchar
+  fg int
+  fga int
+  fg3 int
+  fg3a int
+  ft int
+  fta int
+  orb int
+  drb int
+  ast int
+  stl int
+  blk int
+  tov int
+  pf int
+  pts int
+  plus_minus int
+  did_not_play int
+  is_inactive int
+  off_rtg float
+  def_rtg float
+  bpm float
+  note: "Player level stats for each individual game"
+}
+
+Ref: PG.game_id > G.game_id  
+Ref: PG.game_id > TG.game_id
+Ref: TG.game_id > G.game_id
+Ref: PG.player_id > P.player_id
