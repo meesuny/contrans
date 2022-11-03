@@ -1,0 +1,40 @@
+Project contrans_database {
+  database_type: 'PostgreSQL'
+  Note: '''
+    # Congress transparency database
+    ### Version 0.0.1
+    The data comes from voteview.org and Propublica's Congress API.
+  '''
+}
+Table members as M {
+  game_id varchar [pk]
+  game_date date
+  OT int
+  note: "Data about individual members of Congress"
+}
+Table rollcalls as R {
+  player_id varchar [pk]
+  player varchar
+  note: "Data about the topic and result of roll call votes overall"
+}
+Table member_vote as V {
+  game_id varchar [pk]
+  Team_Abbrev varchar [pk]
+  H_A varchar
+  Team_Score int
+  Team_pace float
+  Team_efg_pct float
+  Team_tov_pct float
+  Team_orb_pct float
+  Team_ft_rate float
+  Team_off_rtg float
+  Opponent_Abbrev varchar
+  note: "Individual members' votes on each roll call"
+}
+
+
+Ref: PG.game_id > G.game_id  
+Ref: PG.game_id > TG.game_id
+Ref: PG.Team_Abbrev > TG.Team_Abbrev
+Ref: TG.game_id > G.game_id
+Ref: PG.player_id > P.player_id
