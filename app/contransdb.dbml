@@ -6,35 +6,77 @@ Project contrans_database {
     The data comes from voteview.org and Propublica's Congress API.
   '''
 }
-Table members as M {
-  game_id varchar [pk]
-  game_date date
-  OT int
-  note: "Data about individual members of Congress"
-}
 Table rollcalls as R {
-  player_id varchar [pk]
-  player varchar
-  note: "Data about the topic and result of roll call votes overall"
+    chamber varchar [pk]
+    rollnumber int [pk]
+    congress int
+    date date
+    session int
+    clerk_rollnumber int
+    yea_count int
+    nay_count int
+    nominate_mid_1 float
+    nominate_mid_2 float
+    nominate_spread_1 float
+    nominate_spread_2 float
+    nominate_log_likelihood float
+    bill_number varchar
+    vote_result varchar
+    vote_desc varchar
+    vote_question varchar
+    dtl_desc varchar
+    note: "Data about individual members of Congress"
+}
+Table members as M {
+    propublica_id varchar [pk]
+    title varchar
+    short_title varchar
+    first_name varchar
+    middle_name varchar
+    last_name varchar
+    suffix varchar
+    congress float
+    chamber varchar
+    icpsr float
+    state varchar
+    district varchar
+    at_large varchar
+    gender varchar
+    party varchar
+    date_of_birth date
+    leadership_role varchar
+    twitter_account varchar
+    facebook_account varchar
+    youtube_account varchar
+    url varchar
+    rss_url varchar
+    seniority int
+    next_election int
+    total_votes float
+    missed_votes float
+    total_present float
+    office varchar
+    phone varchar
+    fax varchar
+    missed_votes_pct float
+    votes_with_party_pct float
+    votes_against_party_pct float
+    DWNOMINATE float
+    propublica_endpoint varchar
+    last_updated datetime
+    note: "Data about the topic and result of roll call votes overall"
 }
 Table member_vote as V {
-  game_id varchar [pk]
-  Team_Abbrev varchar [pk]
-  H_A varchar
-  Team_Score int
-  Team_pace float
-  Team_efg_pct float
-  Team_tov_pct float
-  Team_orb_pct float
-  Team_ft_rate float
-  Team_off_rtg float
-  Opponent_Abbrev varchar
-  note: "Individual members' votes on each roll call"
+    rollnumber int [pk]
+    icpsr float [pk]
+    congress int
+    chamber varchar
+    cast_code int
+    prob float
+    note: "Individual members' votes on each roll call"
 }
 
 
-Ref: PG.game_id > G.game_id  
-Ref: PG.game_id > TG.game_id
-Ref: PG.Team_Abbrev > TG.Team_Abbrev
-Ref: TG.game_id > G.game_id
-Ref: PG.player_id > P.player_id
+Ref: M.icpsr < V.icpsr
+Ref: R.rollnumber < V.rollnumber
+Ref: R.chamber < V.chamber
