@@ -7,7 +7,6 @@ import shutil
 from bs4 import BeautifulSoup
 import io 
 import zipfile 
-import pymongo
 
 def get_voteview():
     memberurl = 'https://voteview.com/static/data/out/members/HS117_members.csv'
