@@ -7,3 +7,4 @@ psycopg2==2.9.5
 sqlalchemy==1.4.42
 pymongo==4.3.2
 lxml==4.9.1
+scikit-learn==1.1.3

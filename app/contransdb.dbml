@@ -76,7 +76,13 @@ Table member_vote as V {
     note: "Individual members' votes on each roll call"
 }
 
+Table charwords as C {
+    sponsor_id varchar [pk]
+    word varchar [pk]
+    tf_idf float
+}
 
 Ref: M.icpsr < V.icpsr
 Ref: R.rollnumber < V.rollnumber
 Ref: R.chamber < V.chamber
+Ref: C.sponsor_id > M.propublica_id
