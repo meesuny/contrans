@@ -7,6 +7,8 @@ services:
             - .env
         ports: 
             - "8889:8888"
+            - "8080:8080"
+            - "8050:8050"
         networks:
             - dbnetwork
     postgres:
